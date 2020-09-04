@@ -4,18 +4,6 @@ using namespace std;
 
 string S;
 
-int P(int idx, int op) {
-	string temp;
-	for (int i = op == 0 ? op : op + 1; i < idx; i++) {
-		temp += S[i];
-	}
-	int sum = 0;
-	for (int i = temp.length() - 1, j = 1; i >= 0; i--, j *= 10) {
-		sum += (temp[i]-'0') * j;
-	}
-	return sum;
-}
-
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0); cout.tie(0);
