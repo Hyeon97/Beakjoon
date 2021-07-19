@@ -5,22 +5,16 @@
 
 using namespace std;
 
-
-
 int solution(int n, int a, int b)
 {
     int answer = 0;
-	if (a < b) {
-		int temp = b;
-		a = b;
-		b = temp;
+	a--; b--;
+	while (a != b) {
+		a /= 2;
+		b /= 2;
+		answer++;
 	}
-	int G = 0;
-	while (b) {
-		G = a % b;
-		a = b;
-		b = G;
-	}
+	return answer;
 }
 
 int main(void) {
