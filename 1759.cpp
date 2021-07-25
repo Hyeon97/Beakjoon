@@ -3,38 +3,29 @@
 
 using namespace std;
 
-int l, c;
-char S[16];
-char out[16];
-void BACK(int idx, int count) {
-	if (count == l) {
-		int ja = 0, mo = 0;
-		for (int i = 0; i < l; i++) {
-			if (out[i] == 'a' || out[i] == 'e' || out[i] == 'i' || out[i] == 'o' || out[i] == 'u')mo++;
-			else ja++;
-		}
+int L, C;
+char ans[16], arr[16];
+
+void Back(int idx, int ja, int mo) {
+	if (ja + mo == L) {
 		if (ja >= 2 && mo >= 1) {
-			for (int i = 0; i < l; i++) {
-				cout << out[i];
-			}
-			cout << "\n";
+			for (int i = 0; i < L; i++)cout << ans[i];
+			cout << '\n';
 		}
 		return;
 	}
-	for (int i = idx; i < c; i++) {
-		out[count] = S[i];
-		BACK(i + 1, count + 1);
+	for (int i = idx; i < C; i++) {
+		ans[ja+mo] = arr[i];
+		if (arr[i] == 'a' || arr[i] == 'e' || arr[i] == 'i' || arr[i] == 'o' || arr[i] == 'u')Back(i + 1, ja, mo + 1);
+		else Back(i + 1, ja + 1, mo);
 	}
 }
 
-
 int main() {
-	cin >> l >> c;
-	for (int i = 0; i < c; i++) {
-		cin >> S[i];
-	}
-	sort(S, S + c);
-	BACK(0, 0);
-
+	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	cin >> L >> C;
+	for (int i = 0; i < C; i++)cin >> arr[i];
+	sort(arr, arr + C);
+	Back(0,0,0);
 	return 0;
 }
